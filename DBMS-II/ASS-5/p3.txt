@@ -1,0 +1,35 @@
+declare
+
+dno emp.deptno%type;
+s number(5):=1900;
+ts number(10);
+ass5 exception;
+
+begin
+
+dno:=&deptno;
+
+select sum(sal) into ts from emp
+
+where deptno=dno;
+
+if ts > s then
+
+raise ass5;
+
+else 
+
+update emp
+set sal=sal+(sal*2.5/100)
+where deptno=dno;
+
+end if;
+
+exception
+
+when ass5 then
+
+dbms_output.put_line('salary > 1900 ');
+
+end;
+

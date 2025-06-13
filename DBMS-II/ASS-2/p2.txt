@@ -1,0 +1,68 @@
+2)set serveroutput on; 	
+declare
+a number(10);
+b number(10);
+c number(10);
+begin
+a:=&a;
+b:=&b;
+c:=a-b;
+
+
+dbms_output.put_line('subtraction:=');
+dbms_output.put_line(c);
+
+
+end;
+
+2.1)set serveroutput on; 			
+declare
+a number(10);
+b number(10);
+c number(10);
+begin
+a:=&a;
+b:=&b;
+c:=a+b;
+
+dbms_output.put_line('addition:=');
+dbms_output.put_line(c);
+
+
+end;
+
+
+2.2)set serveroutput on;
+declare
+a number(10);
+b number(10);
+c number(10);
+begin
+a:=&a;
+b:=&b;
+c:=a*b;
+
+
+dbms_output.put_line('multiplction:=');
+dbms_output.put_line(c);
+
+
+end;
+
+2.3)set serveroutput on;
+declare
+a number(10);
+b number(10);
+c number(10);
+
+begin
+a:=&a;
+b:=&b;
+c:=a/b;
+
+
+dbms_output.put_line('divison:=');
+dbms_output.put_line(c);
+
+
+end;

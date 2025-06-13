@@ -1,0 +1,31 @@
+3)
+set serveroutput on;
+
+declare
+
+dno number(5);
+t_sal number(10);
+
+begin
+
+dno:=&dept_no;
+
+select sum(sal*5.5/100) into t_sal from emp1 where deptno=dno;
+
+update emp1
+
+set sal=sal-(sal*5.5/100)
+
+where deptno=dno;
+
+dbms_output.put_line(t_sal);
+
+if sql%rowcount>=1 then
+
+commit;
+
+else
+dbms_output.put_line('not found'); 
+rollback;
+end if;
+end;

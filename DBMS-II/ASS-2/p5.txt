@@ -1,0 +1,78 @@
+5)
+set serveroutput on;
+
+declare
+
+a number(10);  
+i number(10):=1;
+
+begin    
+    a:=&no;
+    
+  loop 
+
+dbms_output.put_line(i);
+if i>=a then
+
+exit;
+
+end if;
+
+i:=i+1;
+
+end loop;
+end;
+     
+   
+
+5.1)
+set serveroutput on;
+
+declare
+
+a number(4);  
+i number(4):=1;
+
+begin
+    
+    a:=&number;
+    
+    while  i<=a
+
+  loop 
+      
+
+ dbms_output.put_line(i);
+
+
+i:=i+1;
+
+end loop;
+end;
+  /
+
+
+5.2)
+set serveroutput on;
+
+declare
+
+a number(4);  
+i number(4);
+
+begin
+    
+    a:=&number;
+    
+    for  i in 1..a
+
+  loop 
+      
+
+
+   dbms_output.put_line(i);
+
+
+end loop;
+end;
+/

@@ -1,0 +1,20 @@
+6)set serveroutput on;
+declare
+a number(4);
+x number(4);
+s varchar(25);
+r varchar(25);
+
+begin
+
+s:='&name';
+x:=length(s);
+
+for a in reverse 1..x
+loop
+r:=r||substr(s,a,1);
+end loop;
+dbms_output.put_line(r);
+end;
+
+

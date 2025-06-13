@@ -1,0 +1,24 @@
+set serveroutput on;
+
+declare
+
+cursor c1 is select  ENAME,empno,job,sal,deptno from emp1;
+f1 c1%rowtype;
+
+
+begin
+
+open c1;
+
+fetch c1 into f1;
+
+loop
+
+dbms_output.put_line(f1.empno ||'  '|| f1.ENAME||'  '|| f1.job ||'  '|| f1.sal ||'  '|| f1.deptno)
+
+fetch c1 into f1;
+
+exit when c1%notfound;
+end loop;
+close c1;
+end;

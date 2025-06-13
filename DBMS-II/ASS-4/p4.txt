@@ -1,0 +1,54 @@
+set serveroutput on; 
+declare
+cursor c1  is select  cust_no , cust_name , city  from CUSTOMER_MST;
+
+f1 c1%rowtype;
+
+cursor c2 is select  prev_read , curr_read , unit_price , bill_mon  from  CUSTOMER_DTL; 
+
+f2 c2%rowtype;
+
+c number(20);
+tb number(10);
+month varchar2(10);
+city varchar2(10);
+
+begin
+
+month:='&month';
+
+dbms_output.put_line('Electricity bill');
+
+dbms_output.put_line('month:' || month);
+dbms_output.put_line('-------------------------------------------------------------------------');
+
+dbms_output.put_line('reading');
+
+dbms_output.put_line(rpad('customer no.',15)||'  '||rpad('name',10)||' '||rpad('previous',10)||' '||rpad('current',10)||' '||rpad('consumption',12)||' '||rpad('unit price',5)||' '||rpad('total bill',10));
+
+dbms_output.put_line('---------------------------------------------------------------------------');
+
+open c1;
+open c2;
+
+loop
+
+fetch c1 into f1;
+fetch c2 into f2;
+
+exit when c2%notfound;
+
+if(month=upper(f2.bill_mon))then
+
+c:=f2.curr_read-f2.prev_read;
+
+tb:=c*f2.unit_price;
+
+dbms_output.put_line(rpad(f1.CUST_NO,15)||' '||rpad(f1.cust_name,10)||' '||rpad(f2.prev_read,10)||' '||rpad(f2.curr_read,10)||' '||rpad(c,12)||' '||rpad(f2.unit_price,5)||' '||rpad(tb,11));
+
+end if;
+end loop;
+
+dbms_output.put_line('--------------------------------------------------------------------------------');
+
+end;

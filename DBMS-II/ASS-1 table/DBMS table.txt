@@ -1,0 +1,27 @@
+ 1)
+select e.ename,d.dname
+from emp e,dept d
+where d.deptno=e.deptno
+and d.dname='ACCOUNTING'
+/
+
+2) 
+select e.ename,d.dname,d.deptno
+from emp e,dept d
+where d.deptno=e.deptno
+and d.dname='SALES'
+and e.sal > 2000
+
+3)
+
+select e.ename,d.dname
+from emp e,dept d
+where d.deptno=e.deptno
+and d.dname='RESEARCH'
+and e.ename like ('A%')
+
+4)
+select e.ename,d.dname,e.sal
+from emp e,dept d
+where d.deptno=e.deptno
+and d.dname='SALESMAN'

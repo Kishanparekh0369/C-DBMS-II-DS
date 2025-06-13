@@ -1,0 +1,57 @@
+set serveroutput on;
+
+declare
+
+cursor c1  is select  cust_no , cust_name , city  from CUSTOMER_MST;
+f1 c1%rowtype;
+
+cursor c2 is select curr_read , prev_read   from  CUSTOMER_DTL; 
+f2 c2%rowtype;
+
+con number(20);
+
+t number(10):=0;
+
+begin
+
+open c1;
+
+open c2;
+
+dbms_output.put_line('---------------------------------------------------------');
+
+dbms_output.put_line('Electricity consumption');
+
+dbms_output.put_line('------------------------------------------------------------');
+
+dbms_output.put_line('customer no:' ||'     '||'name:'||'      '||'Consumption :'||'      '||'city' );
+
+dbms_output.put_line('----------------------------------------------------------');
+
+loop
+
+fetch c1 into f1;
+
+fetch c2 into f2;
+
+con:=f2.curr_read - f2.prev_read;
+
+exit when c2%notfound;
+
+dbms_output.put_line(rpad(f1.CUST_NO,16)||' '||rpad(f1.CUST_NAME,12)||' '||rpad(con,15)||'  '|| rpad(f1.CITY,10));
+
+t:=con+t;
+
+end loop;
+
+dbms_output.put_line('-------------------------------------------------------------------------');
+
+dbms_output.put_line('total consumption:'||t);  
+
+dbms_output.put_line('-------------------------------------------------------------------------');        
+                                           
+close c1;
+
+close c2;
+
+end;

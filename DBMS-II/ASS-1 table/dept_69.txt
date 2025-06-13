@@ -1,0 +1,25 @@
+create table dept2
+(
+  deptno number(2) Primary Key,
+  dname varchar2(14),
+  loc varchar2(13)
+);
+
+insert into dept2
+values(&deptno,'&dname','&loc');
+
+insert into dept2
+values(10,'ACCOUNTING','NEW YORK')
+
+new   2: values(20,'RESEARCH','DALLAS')
+
+new   2: values(30,'SALES','CHICAGO')
+
+new   2: values(40,'OPERATIONS','BOSTON')
+
+ DEPTNO DNAME          LOC
+------- -------------- -------------
+     10 ACCOUNTING     NEW YORK
+     20 RESEARCH       DALLAS
+     30 SALES          CHICAGO
+     40 OPERATIONS     BOSTON

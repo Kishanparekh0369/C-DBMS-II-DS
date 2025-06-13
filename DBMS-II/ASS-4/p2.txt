@@ -1,0 +1,42 @@
+set serveroutput on;
+
+declare
+
+cursor c1(p varchar2) is select * from emp1
+where deptno=p;
+cursor c2 is select  deptno,dname from  dept2; 
+
+f1 c1%rowtype;
+f2 c2%rowtype;
+
+begin
+open c2;
+
+fetch c2 into f2;
+loop
+dbms_output.put_line(' Department wise emplooy information');
+dbms_output.put_line('----------------------------------------------------------------------------');
+dbms_output.put_line('department no:' ||'  '||f2.deptno||'  '||'deparment name:'||'  '||f2.dname);
+fetch c2 into f2;
+open c1(f2.deptno);
+
+dbms_output.put_line('---------------------------------------------------------------------------');
+dbms_output.put_line(rpad('EMPNO',10)||''||rpad('EMPNAME',10) ||''||rpad('job' ,10)||''|| rpad('sal',10)||''|| rpad('comm',10)||''||rpad(' hiredate',10));
+dbms_output.put_line('-----------------------------------------------------------------------------');
+
+ 
+loop
+
+dbms_output.put_line(rpad(f1.empno,10)||' '||rpad(f1.ename,10)||' '||rpad(f1. job,12)||''|| rpad(f1.sal,14)||''||rpad(f1.comm ,12)||''|| rpad(f1.hiredate,13));
+dbms_output.put_line('---------------------------------------------------------------------------');
+
+fetch c1 into f1;
+exit when c1%notfound;
+end loop;
+dbms_output.put_line('--------------------------------------------------------------------------');
+
+close c1;
+exit when c2%notfound;
+end loop;
+close c2;
+end;

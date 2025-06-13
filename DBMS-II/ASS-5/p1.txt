@@ -1,0 +1,32 @@
+declare
+
+a number(2);
+b varchar2(10);
+c varchar2(10);
+d number(2);
+
+begin
+
+d:=&dept_number;
+
+select deptno,dname,loc into a,b,c from dept2 where d=deptno;
+
+if  sql%found then
+
+dbms_output.put_line('************************');
+dbms_output.put_line('deptno'||a);
+dbms_output.put_line('************************');
+dbms_output.put_line('dname'||b);
+dbms_output.put_line('************************');
+dbms_output.put_line('location'||c);
+dbms_output.put_line('************************');
+
+end if;
+
+exception
+
+when no_data_found then
+
+dbms_output.put_line('not found');
+
+end;

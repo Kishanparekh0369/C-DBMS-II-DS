@@ -1,0 +1,110 @@
+ set serveroutput on;
+declare
+
+rno number(10);
+
+name varchar(25);
+
+marks1 number(10);
+
+marks2 number(10);
+
+marks3 number(10);
+
+total number(10);
+
+pr float(10);
+
+grade char(10);
+
+begin
+rno:=&rno;
+name:='&name';
+marks1:=&marks1;
+marks2:=&marks2;
+marks3:=&marks3;
+
+total:=marks1 + marks2 + marks3;
+
+dbms_output.put_line('total:=');
+dbms_output.put_line(total);
+
+pr:=(total*100)/300;
+dbms_output.put_line('pr:=');
+dbms_output.put_line(pr);
+
+
+
+end;
+
+
+ex 2)
+set serveroutput on;
+declare
+a number(4);
+x number(4);
+s varchar(25);
+r varchar(25);
+
+begin
+
+s:='&name';
+x:=length(s);
+
+for a in  1..x
+loop
+r:=r||substr(s,a,1);
+dbms_output.put_line(r);
+end loop;
+end;
+
+
+
+
+ex 1.1)
+set serveroutput on;
+declare
+i number(10):=1;
+n number(10);
+a number(10);
+b number(5);
+
+begin
+n:=&n;
+
+for i in 1..n*2
+loop
+a:=mod(i,2);
+if a!=0 then
+
+a:=i*i;
+
+dbms_output.put_line(a);
+
+end if;
+end loop;
+end;
+
+1.2)
+set serveroutput on;
+declare
+i number(10):=0;
+f number(10):=1;
+a number(10);
+b number(5);
+
+begin
+a:=&a;
+
+while i <= a
+loop
+
+i:=i+1;
+f:=f/i;
+
+
+
+dbms_output.put_line(f);
+
+end loop;
+end;

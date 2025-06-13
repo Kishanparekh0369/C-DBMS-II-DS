@@ -1,0 +1,25 @@
+create table CUSTOMER_MST
+(
+  CUST_NO VARCHAR2(6) primary key check(CUST_NO like 'ANA%' or CUST_NO like 'BAK%' or CUST_NO like 'VVN%'),
+  CUST_NAME VARCHAR2(15) not null,
+  ADDRESS VARCHAR2(20),
+  CITY VARCHAR2(10) check(CITY in('ANAND','V V NAGAR','BAKROL'))
+);
+
+
+insert into CUSTOMER_MST
+values('&CUST_NO','&CUST_NAME','&ADDRESS','&CITY')
+
+values('ANA001','ALAN','UNDI SHERI','ANAND')
+
+values('VVN001','SMITH','NANA BAZAR','V V NAGAR')
+
+values('ANA002','BLAKE','TOWN HALL ROAD','ANAND')
+
+values('BAK001','ADAMS','VADTAL ROAD','BAKROL')
+
+values('VVN002','WILLIAMS','MOTA BAZAR','V V NAGAR')
+
+values(' ANA003','RODRICKS','TOWN HALL ROAD','ANAND')
+
+
